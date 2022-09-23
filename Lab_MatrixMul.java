@@ -17,7 +17,7 @@ public class Lab_MatrixMul {
         //Q4
         ArrayList<Thread> threads = new ArrayList<Thread>();
 
-        for(int i = 0; i < matC_r; i++) {
+        for (int i = 0; i < matC_r; i++) {
             Thread mat = new Thread(new MatrixMulThread(i, i, matA, matB, matC));
             mat.start();
             threads.add(mat);    
@@ -37,28 +37,27 @@ public class Lab_MatrixMul {
 }
 
 class MatrixMulThread implements Runnable {
-    int processing_row;
-    int processing_col;
-
-    MyData datA;
-    MyData datB;
-    MyData datC;
+    int pro_Row;
+    int pro_Col;
+    MyData dataA;
+    MyData dataB;
+    MyData dataC;
 
     MatrixMulThread(int tRow, int tCol, MyData a, MyData b, MyData c) {
         //Q1
-        processing_row = tRow;
-        processing_col = tCol;
-        datA = a;
-        datB = b;
-        datC = c;
+        pro_Row = tRow;
+        pro_Col = tCol;
+        dataA = a;
+        dataB = b;
+        dataC = c;
     }
 
     /*Q2*/ public void run() {
 
         //Q3
-        for (int i = 0; i < datA.data.length; i++) {
-            for(int j = 0; j < datB.data.length; j++) {
-                datC.data[processing_row][i] += datA.data[processing_row][j] * datB.data[j][i];
+        for (int i = 0; i < dataA.data.length; i++) {
+            for (int j = 0; j < dataB.data.length; j++) {
+                dataC.data[pro_Row][i] += dataA.data[pro_Row][j] * dataB.data[j][i];
             }
         }
         //System.out.println("perform sum of multiplicataion of assigned row and col");
